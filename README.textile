@@ -51,7 +51,7 @@ example (multiple comma separated)
 
 <h2>Contact</h2>
 
-You found a bug, have installation problem or simply like find ?
+You found a bug, have installation problem or simply like finddef ?
 
 Let me know: jan.zimmek at web.de
 
