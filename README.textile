@@ -22,7 +22,7 @@ cp ./Find\ Definition.tmCommand ~/Library/Application\ Support/TextMate/Bundles/
 
 restart textmate or reload bundles.
 
-you show see a new command "Bundles &gt; Ruby &gt; > Find Definition".
+you show see a new command "Bundles &gt; Ruby &gt; Find Definition".
 
 <h2>Usage</h2>
 
