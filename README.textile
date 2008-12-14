@@ -26,8 +26,25 @@ you show see a new command "Bundles &gt; Ruby &gt; > Find Definition".
 
 <h2>Usage</h2>
 
-choose a method by selecting or place the cursor above it.
+choose a method by selecting or place the cursor above it and press 
 
-press <b>^-</b>
+<pre>^-</pre>
 
 finddef will automatically open the matching file when only one match exists, otherwise you can choose from a dialog which file to open.
+
+<h2>Search Path</h2>
+
+By defaut finddef searches methods in your open project directory and your rubygems in "/Library/Ruby/Gems/*/gems/*/lib".
+
+You can speficy an additional path. Add a new shell variable in TextMate
+
+<pre>TextMate &gt; Preferences &gt; Advanced &gt; Shell Variables</pre>
+
+Variable: TM_FINDDEF_PATH
+Value: <your custom path to search>
+
+example (simple):
+Value: /Users/jzimmek/projects
+
+example (multiple comma separated)
+Value: /Users/jzimmek/projects/prj1/lib,/Users/jzimmek/legacy/prjX,...
