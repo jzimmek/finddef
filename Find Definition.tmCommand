@@ -43,7 +43,7 @@ entries = []
 
 SEARCH_PATH.each do |path|
 
-    grep = `grep -rnE "def #{method_name}[\!|\?|=]?([\( ]{1}|$)" #{path}`
+    grep = `grep -rnE "def (self\.)?#{method_name}[\!|\?|=]?([\( ]{1}|$)" #{path}`
     
     grep.each do |e|
 
