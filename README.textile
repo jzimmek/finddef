@@ -34,7 +34,7 @@ finddef will automatically open the matching file when only one match exists, ot
 
 <h2>Search Path</h2>
 
-By defaut finddef searches methods in your open project directory and your rubygems in "/Library/Ruby/Gems/&lt;any&gt;/gems/<any>/lib".
+By defaut finddef searches methods in your open project directory and your rubygems in "/Library/Ruby/Gems/&lt;any&gt;/gems/&lt;any&gt;/lib".
 
 You can speficy an additional path. Add a new shell variable in TextMate
 
