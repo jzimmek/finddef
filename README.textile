@@ -19,3 +19,5 @@ copy finddef to your ruby commands directory
 <pre>
 cp "./Find Definition.tmCommand" "~/Library/Application Support/TextMate/Bundles/Ruby.tmbundle/Commands/"
 </pre>
+
+restart textmate

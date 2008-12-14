@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>beforeRunningCommand</key>
+	<string>nop</string>
+	<key>command</key>
+	<string>#!/usr/bin/env ruby -w
+
+require "#{ENV["TM_SUPPORT_PATH"]}/lib/ui"
+require "#{ENV['TM_SUPPORT_PATH']}/lib/textmate"
+
+METHOD_NAME = ENV['TM_CURRENT_WORD'] || ENV['TM_CURRENT_SELECTION']
+
+SEARCH_PATH = []
+
+# add tm-project directory to search path 
+SEARCH_PATH &lt;&lt; "#{ENV['TM_PROJECT_DIRECTORY']}/app" if ENV['TM_PROJECT_DIRECTORY']
+
+FD_PATH = ENV['TM_FINDDEF_PATH']
+
+# add additional usersupplied to search path
+if FD_PATH
+    FD_PATH.split(",").each do |p|
+        SEARCH_PATH &lt;&lt; p.strip
+    end
+end
+
+# add gems to search path
+SEARCH_PATH &lt;&lt;  "/Library/Ruby/Gems/*/gems/*/lib"
+
+entries = []
+
+SEARCH_PATH.each do |path|
+
+    grep = `grep -rnE "def #{METHOD_NAME}([\( ]{1}|$)" #{path}`
+    
+    grep.each do |e|
+
+        filepath, line, res = e.match(/^.+:[\d]+:.+/).to_s.strip.split(':')
+        
+        # ignore matched in comments
+        if res.strip[0,1] != "#"
+            entries &lt;&lt; { :filepath =&gt; filepath, :line =&gt; line}
+        end
+            
+    end
+
+end
+
+
+if entries.size == 0
+    puts "method '#{METHOD_NAME}' not found."
+elsif entries.size == 1
+    # automatically select matching entry
+    entry = entries[0]
+else
+    displays = entries.map { |e| e[:filepath] + ":" + e[:line] }
+    # show up dialog
+    selected = TextMate::UI.menu(displays)
+    entry = entries[selected] unless selected.nil?
+end
+
+if entry
+    filepath = entry[:filepath]
+    line = entry[:line]
+    
+    # open selected entry in textmate at matching line
+    `open "txmt://open?url=file://#{filepath}&amp;line=#{line}"`
+end</string>
+	<key>fallbackInput</key>
+	<string>word</string>
+	<key>input</key>
+	<string>selection</string>
+	<key>keyEquivalent</key>
+	<string>^-</string>
+	<key>name</key>
+	<string>Find Definition</string>
+	<key>output</key>
+	<string>showAsTooltip</string>
+	<key>scope</key>
+	<string>source.ruby, text.html.ruby</string>
+	<key>uuid</key>
+	<string>F77F2FFC-972C-45B3-B167-4E419D70BC57</string>
+</dict>
+</plist>
