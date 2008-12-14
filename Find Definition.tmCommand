@@ -10,7 +10,17 @@
 require "#{ENV["TM_SUPPORT_PATH"]}/lib/ui"
 require "#{ENV['TM_SUPPORT_PATH']}/lib/textmate"
 
-METHOD_NAME = ENV['TM_CURRENT_WORD'] || ENV['TM_CURRENT_SELECTION']
+method_name = ENV['TM_CURRENT_WORD'] || ENV['TM_CURRENT_SELECTION']
+
+# fix textmate selection
+# selection "index!" results in "index! %&gt;"
+method_name = method_name.split(" ")[0]
+
+# replace special methods names
+method_name.gsub!(/\!/, "")
+method_name.gsub!(/=/, "")
+method_name.gsub!(/\?/, "")
+
 
 SEARCH_PATH = []
 
@@ -33,7 +43,7 @@ entries = []
 
 SEARCH_PATH.each do |path|
 
-    grep = `grep -rnE "def #{METHOD_NAME}([\( ]{1}|$)" #{path}`
+    grep = `grep -rnE "def #{method_name}[\!|\?|=]?([\( ]{1}|$)" #{path}`
     
     grep.each do |e|
 
@@ -50,7 +60,7 @@ end
 
 
 if entries.size == 0
-    puts "method '#{METHOD_NAME}' not found."
+    puts "method '#{method_name}' not found."
 elsif entries.size == 1
     # automatically select matching entry
     entry = entries[0]
