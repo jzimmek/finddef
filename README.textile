@@ -17,7 +17,7 @@ mkdir -p ~/Library/Application\ Support/TextMate/Bundles/Ruby.tmbundle/Commands
 copy finddef to your ruby commands directory
 
 <pre>
-cp ./Find\ Definition.tmCommand ~/Library/Application\ Support/TextMate/Bundles/Ruby.tmbundle/Commands/
+cp ./finddef/Find\ Definition.tmCommand ~/Library/Application\ Support/TextMate/Bundles/Ruby.tmbundle/Commands/
 </pre>
 
 restart textmate or reload bundles.
