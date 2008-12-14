@@ -38,13 +38,13 @@ By defaut finddef searches methods in your open project directory and your rubyg
 
 You can speficy an additional path. Add a new shell variable in TextMate
 
-<pre>TextMate &gt; Preferences &gt; Advanced &gt; Shell Variables</pre>
+<pre>TextMate > Preferences > Advanced > Shell Variables</pre>
 
 Variable: TM_FINDDEF_PATH
 Value: <your custom path to search>
 
 example (simple):
-Value: /Users/jzimmek/projects
+<pre>Value: /Users/jzimmek/projects</pre>
 
 example (multiple comma separated)
-Value: /Users/jzimmek/projects/prj1/lib,/Users/jzimmek/legacy/prjX,...
+<pre>Value: /Users/jzimmek/projects/prj1/lib,/Users/jzimmek/legacy/prjX,...</pre>
