@@ -2,12 +2,18 @@
 
 clone this repository
 
-`git clone git://github.com/jzimmek/finddef.git .`
+<pre>
+git clone git://github.com/jzimmek/finddef.git .
+</pre>
 
 setup textmate directories
 
-`mkdir -p "~/Library/Application Support/TextMate/Bundles/Ruby.tmbundle/Commands"`
+<pre>
+mkdir -p "~/Library/Application Support/TextMate/Bundles/Ruby.tmbundle/Commands"
+</pre>
 
 copy finddef to your ruby commands directory
 
-`cp "./Find Definition.tmCommand" "~/Library/Application Support/TextMate/Bundles/Ruby.tmbundle/Commands/"`
+<pre>
+cp "./Find Definition.tmCommand" "~/Library/Application Support/TextMate/Bundles/Ruby.tmbundle/Commands/"
+</pre>
