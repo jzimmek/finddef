@@ -60,4 +60,5 @@ Let me know: jan.zimmek at web.de
 finddef is inspired by "Go To Helper Method" and "EasyOpen".
 
 http://heycarsten.com/2008/6/12/go-to-helper-method-textmate-command
+
 http://github.com/haru01/easy-open-tmbundle/tree/master
