@@ -48,3 +48,16 @@ example (simple):
 
 example (multiple comma separated)
 <pre>Value: /Users/jzimmek/projects/prj1/lib,/Users/jzimmek/legacy/prjX,...</pre>
+
+<h2>Contact</h2>
+
+You found a bug, have installation problem or simply like find ?
+
+Let me know: jan.zimmek at web.de
+
+<h2>Credits</h2>
+
+finddef is inspired by "Go To Helper Method" and "EasyOpen".
+
+http://heycarsten.com/2008/6/12/go-to-helper-method-textmate-command
+http://github.com/haru01/easy-open-tmbundle/tree/master
