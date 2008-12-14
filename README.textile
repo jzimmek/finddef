@@ -5,19 +5,29 @@
 clone this repository
 
 <pre>
-git clone git://github.com/jzimmek/finddef.git .
+git clone git://github.com/jzimmek/finddef.git
 </pre>
 
 setup textmate directories
 
 <pre>
-mkdir -p "~/Library/Application Support/TextMate/Bundles/Ruby.tmbundle/Commands"
+mkdir -p ~/Library/Application\ Support/TextMate/Bundles/Ruby.tmbundle/Commands
 </pre>
 
 copy finddef to your ruby commands directory
 
 <pre>
-cp "./Find Definition.tmCommand" "~/Library/Application Support/TextMate/Bundles/Ruby.tmbundle/Commands/"
+cp ./Find\ Definition.tmCommand ~/Library/Application\ Support/TextMate/Bundles/Ruby.tmbundle/Commands/
 </pre>
 
-restart textmate
+restart textmate or reload bundles.
+
+you show see a new command "Bundles &gt; Ruby &gt; > Find Definition".
+
+<h2>Usage</h2>
+
+choose a method by selecting or place the cursor above it.
+
+press <b>^-</b>
+
+finddef will automatically open the matching file when only one match exists, otherwise you can choose from a dialog which file to open.
