@@ -1,4 +1,6 @@
-# Installation
+"Find Definition" Textmate Command
+
+<h2>Installation</h2>
 
 clone this repository
 
