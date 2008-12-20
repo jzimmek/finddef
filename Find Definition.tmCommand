@@ -10,17 +10,20 @@
 require "#{ENV["TM_SUPPORT_PATH"]}/lib/ui"
 require "#{ENV['TM_SUPPORT_PATH']}/lib/textmate"
 
-method_name = ENV['TM_CURRENT_WORD'] || ENV['TM_CURRENT_SELECTION']
-
-# fix textmate selection
-# selection "index!" results in "index! %&gt;"
-method_name = method_name.split(" ")[0]
-
-# replace special methods names
-method_name.gsub!(/\!/, "")
-method_name.gsub!(/=/, "")
-method_name.gsub!(/\?/, "")
-
+def selection
+    m = ENV['TM_CURRENT_WORD'] || ENV['TM_CURRENT_SELECTION']
+    
+    # fix textmate selection
+    # selection "index!" results in "index! %&gt;"
+    m = m.split(" ")[0]
+    
+    # replace special methods names
+    m.gsub!(/\!/, "")
+    m.gsub!(/=/, "")
+    m.gsub!(/\?/, "")
+    
+    return m
+end
 
 SEARCH_PATH = []
 
@@ -41,9 +44,21 @@ SEARCH_PATH &lt;&lt;  "/Library/Ruby/Gems/*/gems/*/lib"
 
 entries = []
 
+searched_name = selection()
+
+search_method = searched_name[0,1] =~ /[a-z]/
+
 SEARCH_PATH.each do |path|
 
-    grep = `grep -rnE "def (self\.)?#{method_name}[\!|\?|=]?([\( ]{1}|$)" #{path}`
+    # seach methods when first character is lowercase
+    pattern = "def"
+    
+    # seach class / module when first character is uppercase
+    pattern = "[class|module]" unless search_method
+    
+
+    # only search .rb and .rake files
+    grep = `grep -rnE --include=*.{rb,rake} "#{pattern} #{searched_name}[\!|\?|=]?([\( ]{1}|$)" #{path}`
     
     grep.each do |e|
 
@@ -60,7 +75,14 @@ end
 
 
 if entries.size == 0
-    puts "method '#{method_name}' not found."
+
+    msg = "class/module"
+    
+    if search_method
+        msg = "method"
+    end
+    
+    puts "#{msg} '#{searched_name}' not found."
 elsif entries.size == 1
     # automatically select matching entry
     entry = entries[0]
