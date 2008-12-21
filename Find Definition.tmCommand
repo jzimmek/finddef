@@ -51,14 +51,14 @@ search_method = searched_name[0,1] =~ /[a-z]/
 SEARCH_PATH.each do |path|
 
     # seach methods when first character is lowercase
-    pattern = "def"
+    pattern = "def (self\.)?"
     
     # seach class / module when first character is uppercase
-    pattern = "[class|module]" unless search_method
+    pattern = "[class|module] " unless search_method
     
 
     # only search .rb and .rake files
-    grep = `grep -rnE --include=*.{rb,rake} "#{pattern} #{searched_name}[\!|\?|=]?([\( ]{1}|$)" #{path}`
+    grep = `grep -rnE --include=*.{rb,rake} "#{pattern}#{searched_name}[\!|\?|=]?([\( ]{1}|$)" #{path}`
     
     grep.each do |e|
 
